@@ -1,6 +1,6 @@
 # Kori the Spritail – Nintendo Switch Port
 
-**Kori the Spritail**은 정령 도마뱀 *코리(Kori)*와 함께 모험을 떠나는  
+**Kori the Spritail**은 정령 도마뱀 **코리(Kori)**와 함께 모험을 떠나는  
 **2인 로컬 멀티플레이 액션 어드벤처 게임**입니다.
 
 본 저장소는 **Nintendo Switch 플랫폼 포팅 작업을 위한 Unity 프로젝트**를 관리합니다.
