@@ -1041,7 +1041,7 @@ MonoBehaviour:
   ShootPos: {fileID: 876438321060137195}
   MaxHP: 100
   playerIndex: 0
-  moveSpeed: 1
+  moveSpeed: 5
   Atk: 1
   comboDuration: 1.5
   comboElasepdTime: 0
@@ -1066,6 +1066,9 @@ MonoBehaviour:
   bossLayer:
     serializedVersion: 2
     m_Bits: 0
+  Slash1Effect: {fileID: 7669038587461158102, guid: c881c1a8d6ff9ae45bd93333febf5866, type: 3}
+  Slash2Effect: {fileID: 504514840986960863, guid: 219b16451c5e92f478351e020557b538, type: 3}
+  Slash3Effect: {fileID: 1330363601209435418, guid: 2d32cdc72db5fe44388471fe314cacdf, type: 3}
 --- !u!143 &4371034781684444207
 CharacterController:
   m_ObjectHideFlags: 0

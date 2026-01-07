@@ -408,13 +408,40 @@ public class player : MonoBehaviour
        
     }
 
+
+    [SerializeField] GameObject Slash1Effect;
+    [SerializeField] GameObject Slash2Effect;
+    [SerializeField] GameObject Slash3Effect;
     public void MeleeAttack1()
     {
         MeleeAttackOnce(180, 15);
+        if (comboCount == 0)
+        {
+            GameObject effectObj = Instantiate(Slash1Effect);
+            Vector3 pos = transform.position;
+            pos += transform.forward * 1.0f;
+            pos.y += 0.5f;
+            effectObj.transform.position = pos;
+        }
+        else
+        {
+            GameObject effectObj = Instantiate(Slash2Effect);
+
+            Vector3 pos = transform.position;
+            pos += transform.forward * 1.0f;
+            pos.y += 0.5f;
+            effectObj.transform.position = pos;
+        }
+
     }
     public void Meleeattack3()
     {
         MeleeAttackOnce(360, 15);
+        GameObject effectObj = Instantiate(Slash3Effect);
+        Vector3 pos = transform.position;
+        pos.y += 0.5f;
+        effectObj.transform.position = pos;
+
     }
 
 
