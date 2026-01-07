@@ -25,6 +25,8 @@ public class weapon : MonoBehaviour
     public float bombThrowDuration = 2.5f;
     public float bombRadius = 2.5f;
 
+
+    public bool hasOwner = false;
     public bool activeWeapon
     {
         set 

@@ -68,18 +68,11 @@ public class player : MonoBehaviour
         SetBitIdle();
        GameObject newweapon = Instantiate
             (
-       basicWeaponPrefab,
-       handsocket.transform );
-
-        newweapon.transform.localPosition = Vector3.zero;
-        newweapon.transform.localRotation = Quaternion.identity;
+       basicWeaponPrefab);
         AddWeapon(newweapon.GetComponent<weapon>());
         GameObject rangeweapon = Instantiate
            (
-      rangeWeaponPrefab,
-      handsocket.transform);
-        rangeweapon.transform.localPosition = Vector3.zero;
-        rangeweapon.transform.localRotation = Quaternion.identity;
+      rangeWeaponPrefab);
         AddWeapon(rangeweapon.GetComponent<weapon>());
 
 
@@ -448,7 +441,11 @@ public class player : MonoBehaviour
     public void AddWeapon(weapon _weapon)
     {
         weaponInven.Add(_weapon);
+        _weapon.gameObject.transform.SetParent(handsocket.transform);
+        _weapon.transform.localPosition = Vector3.zero;
+        _weapon.transform.localRotation = Quaternion.identity;
         _weapon.Init();
+        _weapon.hasOwner =true;
         if (weaponInven.Count == 1)
         {
             curWeapon = _weapon;
@@ -482,5 +479,26 @@ public class player : MonoBehaviour
         curWeapon.activeWeapon = true;
         comboCount = 0;
         countRangeAttack = 0;
+    }
+
+
+
+    GameObject nearObject;
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (weaponInven.Count >= 4) return;
+        if (other.TryGetComponent<weapon>(out weapon newweapon))
+        {
+            if (newweapon.hasOwner == false)
+            {
+                AddWeapon(newweapon);
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        
     }
 }
