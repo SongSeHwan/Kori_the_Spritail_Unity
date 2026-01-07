@@ -3,6 +3,7 @@ using Unity.Behavior;
 using UnityEngine;
 using Action = Unity.Behavior.Action;
 using Unity.Properties;
+using System.Numerics;
 
 [Serializable, GeneratePropertyBag]
 [NodeDescription(name: "RagedAttack", story: "[self] at to [time] and [pool] to get fire", category: "Action", id: "95888fe541466757f33c9101a191df27")]
@@ -26,7 +27,7 @@ public partial class RagedAttackAction : Action
         }
 
         anim.SetTrigger("fire");
-
+        fired = false;
         return Status.Running;
     }
 
@@ -48,7 +49,7 @@ public partial class RagedAttackAction : Action
         fireAttacking = anim.GetBool("fire_attacking");
 
         AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
-
+/*
         var melee_hash = Animator.StringToHash("melee_attack");
         var melee_prepare_hash = Animator.StringToHash("melee_prepare");
         var fire_hash = Animator.StringToHash("fire");
@@ -71,7 +72,7 @@ public partial class RagedAttackAction : Action
                 Debug.Log("In unknown state: " + stateInfo.shortNameHash);
                 break;
         }
-
+*/
 
         /*
         if (stateInfo.IsName("fire_prepare")) {
@@ -80,10 +81,15 @@ public partial class RagedAttackAction : Action
 
         if (stateInfo.IsName("fire")) {
 
+            
+
             //if (!fired && stateInfo.normalizedTime >= Time.Value) {
-              if (!fired && stateInfo.normalizedTime >= 0.5f) {
-                    // Spawn projectile from pool
-                    GameObject projectile = pooler.SpawnFromPool("fire", Self.Value.transform.position + Self.Value.transform.forward * 1.5f, Quaternion.identity);
+            if (!fired && stateInfo.normalizedTime >= 0.5f) {
+                // Spawn projectile from pool
+                UnityEngine.Vector3 direction = (Self.Value.transform.forward).normalized;
+                UnityEngine.Quaternion lookRotation = UnityEngine.Quaternion.LookRotation(direction);
+                GameObject projectile = pooler.SpawnFromPool("fire", Self.Value.transform.position + Self.Value.transform.forward * 1.5f, lookRotation);
+                //GameObject projectile = pooler.SpawnFromPool("fire", Self.Value.transform.position + Self.Value.transform.forward * 1.5f, Quaternion.identity);
                 if (projectile != null) {
                     // Initialize projectile if needed
                     projectile.SetActive(true);
@@ -103,6 +109,7 @@ public partial class RagedAttackAction : Action
 
     protected override void OnEnd()
     {
+        anim.ResetTrigger("fire");
     }
 }
 

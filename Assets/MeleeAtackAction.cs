@@ -47,7 +47,7 @@ public partial class MeleeAtackAction : Action
 
 
         
-        var melee_hash = Animator.StringToHash("melee_attack");
+       /* var melee_hash = Animator.StringToHash("melee_attack");
         var melee_prepare_hash = Animator.StringToHash("melee_prepare");
         var fire_hash = Animator.StringToHash("fire");
         var fire_prepare_hash = Animator.StringToHash("fire_prepare");
@@ -68,7 +68,7 @@ public partial class MeleeAtackAction : Action
             default:
                 Debug.Log("In unknown state: " + stateInfo.shortNameHash);
                 break;
-        }
+        }*/
 
 
         /*if (stateInfo.IsName("melee_prepare")) {

@@ -4,7 +4,9 @@ using Unity.Behavior;
 [BlackboardEnum]
 public enum Phase1Enum
 {
+    Idle,
     MeleeAttack,
 	RangeAttack,
-	Idle
+    FloatAttack,
+    None
 }

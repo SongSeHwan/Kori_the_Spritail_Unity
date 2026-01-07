@@ -52,7 +52,6 @@ public class ObjectPooler : MonoBehaviour
     private GameObject CreateNewObject(string tag, GameObject prefab)
     {
         GameObject obj = Instantiate(prefab);
-        obj.AddComponent<PooledObject>().poolTag = tag;
         return obj;
     }
 
@@ -77,6 +76,7 @@ public class ObjectPooler : MonoBehaviour
             objectToSpawn = poolDictionary[tag].Dequeue();
         }
 
+       
         objectToSpawn.SetActive(true);
         objectToSpawn.transform.position = position;
         objectToSpawn.transform.rotation = rotation;
@@ -97,10 +97,4 @@ public class ObjectPooler : MonoBehaviour
         poolDictionary[tag].Enqueue(objectToReturn);
     }
 
-}
-
-
-public class PooledObject : MonoBehaviour
-{
-    public string poolTag;
 }
