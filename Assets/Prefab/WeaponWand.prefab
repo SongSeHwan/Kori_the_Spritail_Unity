@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2477238356975875466
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4734265344949973275, guid: 2867618a77416a744a7aabeae2039d8a, type: 3}
+      propertyPath: m_Name
+      value: WeaponWand
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801950477460457095, guid: 2867618a77416a744a7aabeae2039d8a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.8158946
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801950477460457095, guid: 2867618a77416a744a7aabeae2039d8a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.00000010393262
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801950477460457095, guid: 2867618a77416a744a7aabeae2039d8a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.5041955
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801950477460457095, guid: 2867618a77416a744a7aabeae2039d8a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801950477460457095, guid: 2867618a77416a744a7aabeae2039d8a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801950477460457095, guid: 2867618a77416a744a7aabeae2039d8a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801950477460457095, guid: 2867618a77416a744a7aabeae2039d8a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801950477460457095, guid: 2867618a77416a744a7aabeae2039d8a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801950477460457095, guid: 2867618a77416a744a7aabeae2039d8a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801950477460457095, guid: 2867618a77416a744a7aabeae2039d8a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4734265344949973275, guid: 2867618a77416a744a7aabeae2039d8a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5179479710443772622}
+  m_SourcePrefab: {fileID: -4161369568681901532, guid: 2867618a77416a744a7aabeae2039d8a, type: 3}
+--- !u!1 &7193258052645782673 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4734265344949973275, guid: 2867618a77416a744a7aabeae2039d8a, type: 3}
+  m_PrefabInstance: {fileID: 2477238356975875466}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5179479710443772622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7193258052645782673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6758b38877638841bf43004f9d1ea88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::weapon
+  weaponType: 2
+  AtkDmg: 1
+  itemAtkRange: 2
+  chgTime: 0.5
+  chgAckDmg: 5
+  chgRange: 4
+  ChargeAttackBulletCount: 5
+  ChargeAttackBulletAngle: 15
+  durMax: 10
+  durUseAtk: 1
+  curDur: 1
+  chargingPercent: 0
+  isBreak: 0
+  isCompleteCharge: 0
+  bombThrowDuration: 2.5
+  bombRadius: 2.5
