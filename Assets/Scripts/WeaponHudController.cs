@@ -84,7 +84,7 @@ public sealed class WeaponHudController : MonoBehaviour
         if (_owner != null)
             return true;
 
-        var inputs = UnityEngine.Object.FindObjectsOfType<PlayerInput>(includeInactive: false);
+        var inputs = FindObjectsOfType<PlayerInput>(includeInactive: false);
         for (int i = 0; i < inputs.Length; i++)
         {
             if (inputs[i] != null && inputs[i].playerIndex == targetPlayerIndex)

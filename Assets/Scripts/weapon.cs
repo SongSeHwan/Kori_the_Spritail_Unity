@@ -88,16 +88,12 @@ public class weapon : MonoBehaviour
     [Tooltip("Explosion radius (units).")]
     public float bombRadius = 2.5f;
 
-<<<<<<< HEAD
     // =========================================================
     // 6) Activation (existing interface preserved)
     // =========================================================
     [Header("Activation")]
     [Tooltip("Set to enable/disable this weapon GameObject.")]
-=======
-
     public bool hasOwner = false;
->>>>>>> 5c24e2fb86768197425d56c02a548888bf7261a2
     public bool activeWeapon
     {
         set
