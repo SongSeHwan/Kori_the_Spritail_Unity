@@ -324,6 +324,37 @@ Transform:
   - {fileID: 5701597158597950937}
   m_Father: {fileID: 4388236125329180534}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &876438321060137195
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1513574827020189430}
+  m_Layer: 0
+  m_Name: ShootPosObj
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1513574827020189430
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 876438321060137195}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 1.45, z: 1.89}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3227738439067484183}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &943650364320267158
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,15 +826,16 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2846534100457462445}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: 2.15, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6520827991427939328}
   - {fileID: 4035739161179835632}
+  - {fileID: 1513574827020189430}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!95 &2983890091643235944
 Animator:
   serializedVersion: 7
@@ -1006,20 +1038,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::player
   state: 0
   handsocket: {fileID: 6620375688960011453}
+  ShootPos: {fileID: 876438321060137195}
   MaxHP: 100
-  playerIndex: 0
-  moveSpeed: 1
+  playerIndex: 1
+  moveSpeed: 5
   Atk: 1
+  comboDuration: 1.5
   comboElasepdTime: 0
   isAttacking: 0
   rangedAutoAimRange: 10
+  canMeleeCancel: 0
   countSpecialBullet: 5
-  MaxThrowDistance: 2.5
-  bombMoveSpeed: 0.05
   basicWeaponPrefab: {fileID: 6621861122309375120, guid: d7f49dcbdbca79b40bbfd227c7b03d34, type: 3}
   meleeWeaponPrefab: {fileID: 3472002478178938623, guid: 0225fdc70e446734d80784613664cbd6, type: 3}
   rangeWeaponPrefab: {fileID: 7193258052645782673, guid: 39db3419f6183184095896f9c108aaab, type: 3}
   bombWeaponPrefab: {fileID: 2925650897855217222, guid: 3c9e4aa1a7aff6d4987fbd0328f24ed0, type: 3}
+  normalBullet: {fileID: 6733132649248189488, guid: cc13834340c98c94f8dd834680ed18b2, type: 3}
+  specialBullet: {fileID: 3449920688154901902, guid: b67d6aaaf62370b4eb9c64c07d10c436, type: 3}
+  curWeapon: {fileID: 0}
+  sucessAttack: 0
+  HitGracePeriodTime: 2
+  curGracePeriodTime: 0
+  OnInvincibility: 0
+  dashSpeed: 20
+  dashDuration: 0.15
+  dashCooldown: 1
+  bossLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  Slash1Effect: {fileID: 7669038587461158102, guid: c881c1a8d6ff9ae45bd93333febf5866, type: 3}
+  Slash2Effect: {fileID: 504514840986960863, guid: 219b16451c5e92f478351e020557b538, type: 3}
+  Slash3Effect: {fileID: 1330363601209435418, guid: 2d32cdc72db5fe44388471fe314cacdf, type: 3}
 --- !u!143 &4371034781684444207
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1553,8 +1602,6 @@ SkinnedMeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1577,11 +1624,9 @@ SkinnedMeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_MaskInteraction: 0
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
