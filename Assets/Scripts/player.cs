@@ -35,23 +35,15 @@ public class player : MonoBehaviour
     public float comboDuration = 0.5f;
     public float comboElasepdTime = 0f;
     public bool isAttacking = false;
-    //float rapidfireTime = 0.5f;
-    //float rapidfireElapsedTime = 0f;
-    //bool canRapidfire = false;
     public float rangedAutoAimRange = 10.0f;
 	float rangeAngle = 150.0f;
     public bool canMeleeCancel = false;
-    //float chargingTime = 0.0f;
     bool isCharging = false;
-    bool isChargeAttack = false;
 
     float nearDistance = float.MaxValue;
 
     int countRangeAttack = 0;
     public int countSpecialBullet = 5;
-    //public float MaxThrowDistance = 2.5f;
-   // public float bombMoveSpeed = 0.05f;
-
     public GameObject basicWeaponPrefab;
     public GameObject meleeWeaponPrefab;
     public GameObject rangeWeaponPrefab;
@@ -62,6 +54,11 @@ public class player : MonoBehaviour
     List<weapon> weaponInven = new List<weapon>();
     public weapon curWeapon;
     public bool sucessAttack = false;
+
+    public float HitGracePeriodTime = 2.0f;
+    public float curGracePeriodTime = 0.0f;
+    public  bool OnInvincibility = false;
+
     void Start()
     {
         cc = GetComponent<CharacterController>();
@@ -71,18 +68,11 @@ public class player : MonoBehaviour
         SetBitIdle();
        GameObject newweapon = Instantiate
             (
-       basicWeaponPrefab,
-       handsocket.transform );
-
-        newweapon.transform.localPosition = Vector3.zero;
-        newweapon.transform.localRotation = Quaternion.identity;
+       basicWeaponPrefab);
         AddWeapon(newweapon.GetComponent<weapon>());
         GameObject rangeweapon = Instantiate
            (
-      rangeWeaponPrefab,
-      handsocket.transform);
-        rangeweapon.transform.localPosition = Vector3.zero;
-        rangeweapon.transform.localRotation = Quaternion.identity;
+      rangeWeaponPrefab);
         AddWeapon(rangeweapon.GetComponent<weapon>());
 
 
@@ -102,6 +92,16 @@ public class player : MonoBehaviour
             sucessAttack = false;
         }
 
+
+        if(OnInvincibility)
+        {
+            curGracePeriodTime -= Time.deltaTime;
+            if(curGracePeriodTime <= 0.0f)
+            {
+                curGracePeriodTime = 0.0f;
+                OnInvincibility = false;
+            }
+        }
         if (isDashing)
         {
             DashMove();
@@ -112,8 +112,16 @@ public class player : MonoBehaviour
 
     public void sendDamage(int _damage)
     {
+        if (OnInvincibility) return;
+        anim.SetTrigger("OnHit");
+
+        Damage(_damage);
+    }
+
+    void Damage(int _damage)
+    {
         curHP -= _damage;
-        if(curHP <= 0)
+        if (curHP <= 0)
         {
             curHP = 0;
         }
@@ -266,7 +274,7 @@ public class player : MonoBehaviour
         state = 0;
         state |= StateFlag.CanAttack;
     }
-
+    
     public void SetBitStun()
     {
         state = 0;
@@ -393,20 +401,51 @@ public class player : MonoBehaviour
        
     }
 
+
+    [SerializeField] GameObject Slash1Effect;
+    [SerializeField] GameObject Slash2Effect;
+    [SerializeField] GameObject Slash3Effect;
     public void MeleeAttack1()
     {
         MeleeAttackOnce(180, 15);
+        if (comboCount == 0)
+        {
+            GameObject effectObj = Instantiate(Slash1Effect);
+            Vector3 pos = transform.position;
+            pos += transform.forward * 1.0f;
+            pos.y += 0.5f;
+            effectObj.transform.position = pos;
+        }
+        else
+        {
+            GameObject effectObj = Instantiate(Slash2Effect);
+
+            Vector3 pos = transform.position;
+            pos += transform.forward * 1.0f;
+            pos.y += 0.5f;
+            effectObj.transform.position = pos;
+        }
+
     }
     public void Meleeattack3()
     {
         MeleeAttackOnce(360, 15);
+        GameObject effectObj = Instantiate(Slash3Effect);
+        Vector3 pos = transform.position;
+        pos.y += 0.5f;
+        effectObj.transform.position = pos;
+
     }
 
 
     public void AddWeapon(weapon _weapon)
     {
         weaponInven.Add(_weapon);
+        _weapon.gameObject.transform.SetParent(handsocket.transform);
+        _weapon.transform.localPosition = Vector3.zero;
+        _weapon.transform.localRotation = Quaternion.identity;
         _weapon.Init();
+        _weapon.hasOwner =true;
         if (weaponInven.Count == 1)
         {
             curWeapon = _weapon;
@@ -440,5 +479,26 @@ public class player : MonoBehaviour
         curWeapon.activeWeapon = true;
         comboCount = 0;
         countRangeAttack = 0;
+    }
+
+
+
+    GameObject nearObject;
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (weaponInven.Count >= 4) return;
+        if (other.TryGetComponent<weapon>(out weapon newweapon))
+        {
+            if (newweapon.hasOwner == false)
+            {
+                AddWeapon(newweapon);
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        
     }
 }
