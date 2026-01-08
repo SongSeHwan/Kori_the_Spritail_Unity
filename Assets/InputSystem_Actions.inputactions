@@ -27,7 +27,20 @@
                 {
                     "name": "Dash",
                     "type": "Button",
+<<<<<<< HEAD
                     "id": "ae96c488-f8b3-4af5-a533-601f2bd6643b",
+=======
+                    "id": "852140f2-7766-474d-8707-702459ba45f3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Crouch",
+                    "type": "Button",
+                    "id": "27c5f898-bc57-4ee1-8800-db469aca5fe3",
+>>>>>>> a77ce3f390c3c16eed233217c7f3486ad1603f56
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -36,7 +49,11 @@
                 {
                     "name": "Catch/Throw",
                     "type": "Button",
+<<<<<<< HEAD
                     "id": "2331d3ce-56e1-42ea-b40e-a4f80786f6c9",
+=======
+                    "id": "f1ba0d36-48eb-4cd5-b651-1c94a6531f70",
+>>>>>>> a77ce3f390c3c16eed233217c7f3486ad1603f56
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -54,8 +71,22 @@
                 {
                     "name": "SwapweaponRight",
                     "type": "Button",
+<<<<<<< HEAD
                     "id": "aeafd327-aa88-438e-a4be-06f64d289e13",
                     "expectedControlType": "",
+=======
+                    "id": "b7230bb6-fc9b-4f52-8b25-f5e19cb2c2ba",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Sprint",
+                    "type": "Button",
+                    "id": "641cd816-40e6-41b4-8c3d-04687c349290",
+                    "expectedControlType": "Button",
+>>>>>>> a77ce3f390c3c16eed233217c7f3486ad1603f56
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -191,7 +222,7 @@
                     "name": "Submit",
                     "type": "Button",
                     "id": "7607c7b6-cd76-4816-beef-bd0341cfe950",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
